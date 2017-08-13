@@ -1,0 +1,53 @@
+{
+    "cvelist": [
+        {
+
+            "cveid": "CVE-2015-6764",
+            "description": "Chrome V8引擎中内存越界操作漏洞，导致攻击者可以利用该漏洞远程攻击用户设备。",
+            "url":"cve_2015_6764.html"
+
+        },
+        {
+
+            "cveid": "CVE-2016-1646",
+            "description": "Chrome V8引擎中内存越界操作漏洞，导致攻击者可以利用该漏洞远程攻击用户设备。",
+            "url":"cve_2016_1614.html"
+        },
+        {
+
+            "cveid": "CVE-2016-1677",
+            "description": "Chrome V8引擎中uri.js使用了错误的数组类型，导致攻击者可以利用此漏洞远程获取敏感信息。",
+            "url":"cve_2016_1677.html"
+        },
+        {
+
+            "cveid": "CVE-2016-6754",
+            "description": "利用此漏洞，攻击者可能通过一个网页远程攻击用户，影响2016-11-05前的Android 5.0.X、5.1.X和6.X系统。",
+            "url":"cve_2016_6754.html"
+        },
+        {
+
+            "cveid": "CVE-2016-9651",
+            "description": "此漏洞是PwnFest2016中攻破Chrome浏览器的漏洞，利用此漏洞攻击者可能通过一个网页远程攻击用户。",
+            "url":"cve_2016_9651.html"
+        },
+        {
+
+            "cveid": "CVE-2017-5053",
+            "description": "远程代码执行，可能导致攻击者利用此漏洞远程攻击用户设备。",
+            "url":"cve_2017_5053.html"
+        },
+        {
+
+             "cveid": "CVE-2015-6771",
+             "description": "该漏洞位于Chrome V8中的js/array.js里，影响Chrome浏览器（低于47.0.2526.73)诸多版本，允许攻击者远程执行代码。",
+             "url":"exploit.html"
+        },
+        {
+
+               "cveid": "CVE-2017-5053",
+               "description": "远程代码执行，可能导致攻击者利用此漏洞远程攻击用户设备。",
+               "url":"pownfest.html"
+        }
+    ]
+}

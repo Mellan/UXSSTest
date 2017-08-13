@@ -1,0 +1,17 @@
+<html>
+<script>
+
+function check(){
+    var arr = [];
+    for (var i = 0; i < 8; i++) arr[i] = 1;
+    var fromIndex = {valueOf: function() { arr.length = 1;arr[0]=0;return 0;}};
+    var index=arr.indexOf(1, fromIndex);
+    return index;
+}
+
+if(check() != 3)
+    alert("result=safe");
+else
+    alert("result=vulnerable");
+</script>
+</html>

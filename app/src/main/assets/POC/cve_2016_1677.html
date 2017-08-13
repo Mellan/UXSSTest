@@ -1,0 +1,20 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+var num = new Number(10);
+Array.prototype.__defineGetter__(0,function(){
+        return num;
+        })
+Array.prototype.__defineSetter__(0,function(value){
+        })
+var str=decodeURI("%E7%9A%84");
+console.log(str.charCodeAt(0).toString(16));
+if(0x7684==str.charCodeAt(0)){
+    alert("无漏洞");
+    console.log("result=safe");
+}else{
+    alert("decodeURI函数有漏洞");
+    console.log("result=vulnerable");
+}
+</script>
+</html>
