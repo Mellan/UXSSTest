@@ -1,6 +1,7 @@
 package com.example.uxsstest;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -37,26 +39,33 @@ import java.util.Objects;
 public class MainActivity extends Activity {
     private NanoHTTPD webserver;
     private ListView listView;
-    public ArrayList<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
+    private Button autotest;
+    public static ArrayList<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        listView=(ListView)findViewById(R.id.listview);
-        list=getList();
-        Mybaseadapter mybaseadapter=new Mybaseadapter(this,list);
-        listView.setAdapter(mybaseadapter);
         try {
             copyFilesFassets(this,"POC",getFilesDir().getAbsolutePath()+"/UXSSTest/");
             webserver= new NanoHTTPD(40310,new File(getFilesDir().getAbsolutePath()));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        autotest=(Button)findViewById(R.id.autotest);
+        listView=(ListView)findViewById(R.id.listview);
+        list=getList();
+        Mybaseadapter mybaseadapter=new Mybaseadapter(this,list);
+        listView.setAdapter(mybaseadapter);
+        //final WebView webView=new WebView(this);
+        //webView.getSettings().setAllowFileAccess(true);
+        //webView.getSettings().setJavaScriptEnabled(true);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String url="http://127.0.0.1:40310/UXSSTest/"+list.get(position).get("url").toString();
+                //String url="file:///android_asset/POC/cve_2015_6764.html";
+                //webView.loadUrl(url);
                 Log.d("URL地址",url);
                 Intent intent=new Intent();
                 intent.setAction("android.intent.action.VIEW");
@@ -65,6 +74,14 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+        autotest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,AutoTestActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
     /**
      *  从assets目录中复制整个文件夹内容

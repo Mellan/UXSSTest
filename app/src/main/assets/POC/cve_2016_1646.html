@@ -1,30 +1,53 @@
+<html>
 <script>
-//https://chromium.googlesource.com/v8/v8/+/96a2bd8ae8c25e2acbe63319011cbb829b59e3df/test/mjsunit/regress/regress-crbug-594574-concat-leak-1.js
-
 function gc(){
-    for(var i=0;i<0x100000/16;i++){
-        var a=new String();
-    }
+    var arr = new Array;
+    for(var i=0;i<0x200000;i++)
+        arr.push(new String);
+
 }
 
-array = new Array(10)
-array[0] = 0.1
-//array[1] is null
-array[2] = 2.1
-array[3] = 3.1
+array = new Array(4);
+array[0] = 0.1;
+// array[1] = THE_HOLE, reading through the prototype chain
+array[2] = 2.1;
+array[3] = 3.1;
 
+var copy = array.slice(0, array.length);
+
+// Change the array's prototype.
 var proto = {};
 array.__proto__ = proto;
 
-Object.defineProperty(proto, 1, { 
-         get: function() { array.length = 1; gc(); return "value from proto";}, 
-         set: function(new_value){} 
+// Define [1] on the prototype to alter the array during concatenation.
+//Object.defineProperty is a new feature, use __defineGetter__ instead
+/*Object.defineProperty(
+  proto, 1, {
+    get() {
+      // Alter the array.
+      array.length = 1;
+      // Force gc to move the array.
+      //gc();
+      return "value from proto";
+    },
+    set(new_value) { }
+});*/
+proto.__defineGetter__(1,function(){
+      array.length = 1;
+      return "value from proto";
+});
+proto.__defineSetter__(1,function(){
+
 });
 
-var concatted_array = Array.prototype.concat.call(array)
-
-if(concatted_array[3]!=null){
-	alert("concat is vulnerable");
-	alert(concatted_array[3]);
+var concatted_array = Array.prototype.concat.call(array);
+    console.log("concatted array "+JSON.stringify(concatted_array));
+if(concatted_array.length!=4||(concatted_array[0]==0.1&&concatted_array[1]=="value from proto"&&concatted_array[2]==undefined&&concatted_array[3]==undefined)){
+    console.log("result=safe");
+}
+else{
+    console.log("result=vulnerable");
 }
 </script>
+</html>
+

@@ -6,20 +6,20 @@
     android:layout_height="match_parent"
     tools:context="com.example.uxsstest.MainActivity">
 
-    <TextView
-        android:id="@+id/textview"
+    <Button
+        android:id="@+id/autotest"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="55dp"
         android:gravity="center_vertical|center_horizontal"
         android:hapticFeedbackEnabled="true"
-        android:text="浏览器UXSS测试"
+        android:text="浏览器UXSS自动测试"
         android:textColor="@android:color/holo_blue_light"
         android:textSize="18sp" />
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray"
-        android:layout_below="@+id/textview"
+        android:layout_below="@+id/autotest"
         android:id="@+id/image"/>
     <ListView
         android:id="@+id/listview"

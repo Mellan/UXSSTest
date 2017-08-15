@@ -41,13 +41,13 @@
 
              "cveid": "CVE-2015-6771",
              "description": "该漏洞位于Chrome V8中的js/array.js里，影响Chrome浏览器（低于47.0.2526.73)诸多版本，允许攻击者远程执行代码。",
-             "url":"exploit.html"
+             "url":"cve_2015_6771.html"
         },
         {
 
-               "cveid": "CVE-2017-5053",
+               "cveid": "CVE-2016-1688",
                "description": "远程代码执行，可能导致攻击者利用此漏洞远程攻击用户设备。",
-               "url":"pownfest.html"
+               "url":"cve_2015_6764.html"
         }
     ]
 }

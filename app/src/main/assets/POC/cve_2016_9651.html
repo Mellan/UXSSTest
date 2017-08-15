@@ -7,12 +7,12 @@ try{
     Object.assign(short,longlong);
     var newLength = short.toString().length;
     if(savedLength===newLength)
-         alert("result=safe");
+         console.log("result=safe");
     else
-         alert("result=vulnerable");
+         console.log("result=vulnerable");
 }catch(e){
     //There is no Object.assign
-    alert("result=safe");
+    console.log("result=safe");
 }
 </script>
 </html>

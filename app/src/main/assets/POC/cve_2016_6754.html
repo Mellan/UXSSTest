@@ -5,9 +5,9 @@ Object.prototype.__defineGetter__("observe_accept_invalid",function(){kMessages=
 try{Object.observe({},function(){},1)}catch(e){}
 delete Object.prototype["observe_accept_invalid"];
 if(kMessages===undefined)
-    alert("result=safe");
+    console.log("result=safe");
 else{
-    alert("result=vulnerable");
+    console.log("result=vulnerable");
 }
 </script>
 </html>
