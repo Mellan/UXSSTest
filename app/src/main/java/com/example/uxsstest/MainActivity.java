@@ -63,9 +63,8 @@ public class MainActivity extends Activity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 String url="http://127.0.0.1:40310/UXSSTest/"+list.get(position).get("url").toString();
-                //String url="file:///android_asset/POC/cve_2015_6764.html";
-                //webView.loadUrl(url);
                 Log.d("URL地址",url);
                 Intent intent=new Intent();
                 intent.setAction("android.intent.action.VIEW");

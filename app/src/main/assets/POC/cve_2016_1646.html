@@ -44,9 +44,13 @@ var concatted_array = Array.prototype.concat.call(array);
     console.log("concatted array "+JSON.stringify(concatted_array));
 if(concatted_array.length!=4||(concatted_array[0]==0.1&&concatted_array[1]=="value from proto"&&concatted_array[2]==undefined&&concatted_array[3]==undefined)){
     console.log("result=safe");
+            alert("result=safe")
+
 }
 else{
     console.log("result=vulnerable");
+                    alert("result=vulnerable")
+
 }
 </script>
 </html>

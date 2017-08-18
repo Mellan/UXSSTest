@@ -6,8 +6,11 @@ try{Object.observe({},function(){},1)}catch(e){}
 delete Object.prototype["observe_accept_invalid"];
 if(kMessages===undefined)
     console.log("result=safe");
+            alert("result=safe")
+
 else{
     console.log("result=vulnerable");
+    	    alert("result=vulnerable")
 }
 </script>
 </html>

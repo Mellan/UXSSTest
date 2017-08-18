@@ -7,47 +7,50 @@ import android.util.Log;
 import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 import java.util.Map;
 
 import static com.example.uxsstest.MainActivity.list;
 
 public class AutoTestActivity extends AppCompatActivity {
-
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auto_test);
-
+        textView=(TextView)findViewById(R.id.result);
         AutoTest();
         //webView.loadUrl("http://127.0.0.1:40310/UXSSTest/cve_2015_6764.html");
     }
     public void AutoTest(){
-        WebView webView = new WebView(this);
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setAllowFileAccess(true);
-        webView.setWebChromeClient(new WebChromeClient());
         for (int i=0;i<list.size();i++){
+            WebView webView = new WebView(this);
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.getSettings().setAllowFileAccess(true);
+            webView.setWebChromeClient(new DefualtWebChromeClient());
             Log.d("list",(String)list.get(i).get("url"));
             String url="file:///android_asset/POC/"+(String)list.get(i).get("url");
             webView.loadUrl(url);
-            webView.destroy();
-            //webView.loadUrl("file:///android_asset/POC/cve_2015_6764.html");
-
         }
     }
 
     private class DefualtWebChromeClient extends WebChromeClient {
         @Override
         public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
-            String message = consoleMessage.message();
-            int lineNumber = consoleMessage.lineNumber();
-            String sourceID = consoleMessage.sourceId();
-            String messageLevel = consoleMessage.message();
-
-            Log.e("[WebView]", String.format("[%s] sourceID: %s lineNumber: %n message: %s",
-                    messageLevel, sourceID, lineNumber, message));
-
+            String message = consoleMessage.message().trim();
+            String result="";
+            if(message.indexOf("Uncaught SyntaxError",0)!=-1){
+                result="safe";
+            }
+            else {
+                int a=message.indexOf("result=",0);
+                if(a!=-1){
+                    result=message.substring(7);
+                }
+            }
+            Log.d("result",result);
+            textView.append(result+"\n");
             return super.onConsoleMessage(consoleMessage);
         }
     }

@@ -2,6 +2,7 @@ package com.example.uxsstest;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,7 @@ public class Mybaseadapter extends BaseAdapter {
 
         viewHolder.cve.setText(list.get(position).get("cveid").toString());
         viewHolder.description.setText("漏洞描述："+list.get(position).get("description").toString());
+
         return convertView;
     }
 

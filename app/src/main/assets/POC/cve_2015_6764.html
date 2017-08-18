@@ -12,10 +12,12 @@ var result = JSON.stringify(array);
 console.log(result);
 if(result===expected||result===expected2){
     console.log("result=safe");
+        alert("result=safe")
+
 }else{
 
     console.log("result=vulnerable");
-    <!--alert("result=vulnerable")-->
+    alert("result=vulnerable")
 
 }
 </script>

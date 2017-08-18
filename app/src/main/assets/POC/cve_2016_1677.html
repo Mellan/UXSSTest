@@ -10,8 +10,12 @@ var str=decodeURI("%E7%9A%84");
 console.log(str.charCodeAt(0).toString(16));
 if(0x7684==str.charCodeAt(0)){
     console.log("result=safe");
+            alert("result=safe")
+
 }else{
     console.log("result=vulnerable");
+                    alert("result=vulnerable")
+
 }
 </script>
 </html>
