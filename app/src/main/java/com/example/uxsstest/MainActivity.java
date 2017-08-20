@@ -117,6 +117,7 @@ public class MainActivity extends Activity {
     }
     //从config.txt文件中读取漏洞列表；以Json格式解析
     private ArrayList<Map<String,Object>> getList(){
+        list.clear();
         JSONObject object=new JSONObject();
         StringBuilder stringBuilder=new StringBuilder();
         File file =new File(getFilesDir().getAbsolutePath()+"/UXSSTest/config.txt");

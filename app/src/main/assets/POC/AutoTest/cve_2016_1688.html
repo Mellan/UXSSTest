@@ -1,0 +1,19 @@
+<html>
+<script>
+    var ARROW_ARG = /^([^\(]+?)=>/;
+    
+    var fn = foo => { foo(); }
+    
+    var args = fn.toString().match(ARROW_ARG);
+    console.log(args); // ["foo =>", "foo ", index: 0, input: "foo => { foo(); }"]
+    var args2 = fn.toString().match(ARROW_ARG);
+    console.log(args2); // null in Chrome 50
+
+    if(args2 === null){
+	    console.log("result=vulnerable");
+	}
+	else {
+	    console.log("result=safe");
+	}
+</script>
+</html>

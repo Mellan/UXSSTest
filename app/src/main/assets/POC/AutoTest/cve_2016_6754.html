@@ -1,0 +1,13 @@
+<html>
+<script>
+var kMessages;
+Object.prototype.__defineGetter__("observe_accept_invalid",function(){kMessages=this});
+try{Object.observe({},function(){},1)}catch(e){}
+delete Object.prototype["observe_accept_invalid"];
+if(kMessages===undefined)
+    console.log("result=safe");
+else{
+    console.log("result=vulnerable");
+}
+</script>
+</html>

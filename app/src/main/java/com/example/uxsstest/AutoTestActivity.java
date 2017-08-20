@@ -30,7 +30,7 @@ public class AutoTestActivity extends AppCompatActivity {
             webView.getSettings().setAllowFileAccess(true);
             webView.setWebChromeClient(new DefualtWebChromeClient());
             Log.d("list",(String)list.get(i).get("url"));
-            String url="file:///android_asset/POC/"+(String)list.get(i).get("url");
+            String url="file:///android_asset/POC/AutoTest/"+(String)list.get(i).get("url");
             webView.loadUrl(url);
         }
     }
@@ -39,6 +39,10 @@ public class AutoTestActivity extends AppCompatActivity {
         @Override
         public boolean onConsoleMessage(ConsoleMessage consoleMessage) {
             String message = consoleMessage.message().trim();
+            String source=consoleMessage.sourceId();
+            String html=source.substring(source.lastIndexOf("/")+1,source.length()-5);
+
+            Log.d("console",html);
             String result="";
             if(message.indexOf("Uncaught SyntaxError",0)!=-1){
                 result="safe";
@@ -47,10 +51,11 @@ public class AutoTestActivity extends AppCompatActivity {
                 int a=message.indexOf("result=",0);
                 if(a!=-1){
                     result=message.substring(7);
-                }
+                }else
+                    return super.onConsoleMessage(consoleMessage);
             }
             Log.d("result",result);
-            textView.append(result+"\n");
+            textView.append(html+" is "+result+"\n");
             return super.onConsoleMessage(consoleMessage);
         }
     }

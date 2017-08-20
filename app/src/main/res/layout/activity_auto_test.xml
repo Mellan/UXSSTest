@@ -5,15 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.uxsstest.AutoTestActivity">
+
     <TextView
+        android:id="@+id/result"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:id="@+id/result"/>
-    <ListView
+        android:textSize="18sp" />
+    <!--<ListView
         android:id="@+id/resultlistview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:theme="@android:style/Theme.Light">
-        </ListView>
+        </ListView>-->
 
 </RelativeLayout>

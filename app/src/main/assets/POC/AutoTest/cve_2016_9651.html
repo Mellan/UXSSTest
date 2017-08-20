@@ -1,0 +1,18 @@
+<html>
+<script>
+try{
+    class short extends Array{}
+    class longlong extends Array{}
+    var savedLength = short.toString().length;
+    Object.assign(short,longlong);
+    var newLength = short.toString().length;
+    if(savedLength===newLength)
+         console.log("result=safe");
+    else
+         console.log("result=vulnerable");
+}catch(e){
+    //There is no Object.assign
+    console.log("result=safe");
+}
+</script>
+</html>

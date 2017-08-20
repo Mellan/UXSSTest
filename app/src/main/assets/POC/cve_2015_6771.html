@@ -1,0 +1,30 @@
+<html>
+<script>
+var typedArray = new Int8Array(1);
+var saved;
+var called=false;
+//the first argument can be InternalArray or number
+typedArray.constructor = function(x) { if(typeof x != "number")called = true;saved = x;return new Int8Array(1) };
+typedArray.constructor.prototype = Int8Array.prototype;
+try{
+    typedArray.map(function(){});
+}catch(e){
+    //有些版本检查new constructor的返回类型
+    //console.log("exception in typedArray.map");
+}
+var vulnerable = false;
+if(called==true){
+    if(saved.constructor==undefined||saved.constructor.name!="Array"){//InternalArray leak
+        vulnerable = true;
+    }else{
+    }
+};
+if(vulnerable == false)
+    console.log("result=safe");
+            alert("result=safe")
+
+else
+    console.log("result=vulnerable");
+       alert("result=vulnerable")
+</script>
+</html>

@@ -1,0 +1,19 @@
+<html>
+<script>
+var array = [];
+var funky = {
+  toJSON: function() { array.length = 1; return "funky"; }
+};
+for (var i = 0; i < 10; i++) array[i] = i;
+array[0] = funky;
+var expected = '["funky",null,null,null,null,null,null,null,null,null]';
+var expected2 = '["funky"]';
+var result = JSON.stringify(array);
+console.log(result);
+if(result===expected||result===expected2){
+    console.log("result=safe");
+}else{
+    console.log("result=vulnerable");
+}
+</script>
+</html>
